@@ -2,17 +2,16 @@ require "uri"
 require "net/http"
 require "json"
 
-def request(adress)
-    url = URI(adress)
+def request(adress, apikey)
+    url = URI(adress + apikey)
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     request = Net::HTTP::Get.new(url)
-
     response = https.request(request)
     JSON.parse response.read_body
 end
 
-data = request('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=10&api_key=pmONMroT1f8kX54M9Pc1fOMB2KxXl5BBrfecCrOH')
+data = request('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=10', '&api_key=pmONMroT1f8kX54M9Pc1fOMB2KxXl5BBrfecCrOH')
 
 def buid_web_page(hash)
 
@@ -50,7 +49,7 @@ def buid_web_page(hash)
         html += "            <li><img src=\"#{photo}\"></li>\n"
         end
 
-    File.write('prueba.html', html + html1)
+    File.write('nasa_photos.html', html + html1)
 
 end
 
