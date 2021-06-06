@@ -33,20 +33,13 @@ def buid_web_page(hash)
     end
 
 
-    html = "<html>
-    <head>
-    </head>
-    <body>
-        <ul>
-"
+    html = "<html>\n\t<head>\n\t</head>\n\t<body>\n\t\t<ul>\n"
 
-    html1 = "        </ul>
-    </body>
-</html>"
+    html1 = "\t\t</ul>\n\t</body>\n</html>"
 
 
     hashes.each do |photo|
-        html += "            <li><img src=\"#{photo}\"></li>\n"
+        html += "\t\t\t<li><img src=\"#{photo}\"></li>\n"
         end
 
     File.write('nasa_photos.html', html + html1)
